@@ -1,9 +1,13 @@
 package betty.business.repository;
 
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import betty.business.model.MessageModel;
+import betty.business.model.UserModel;
 import betty.business.time.Clock;
 
 public class MessageRepository {
@@ -21,5 +25,11 @@ public class MessageRepository {
 		message.setTime(clock.nowDateTime());
 		messaggi.add(message);
 	}
-
+	
+	public List<MessageModel> findByUser(UserModel user) {
+		return messaggi.stream()
+				.filter(m -> user.equals(m.getUser()))
+				.sorted(Comparator.comparing(MessageModel::getTime).reversed())
+				.collect(Collectors.toList());
+	}
 }
