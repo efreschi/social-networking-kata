@@ -12,7 +12,7 @@ import betty.business.model.UserModel;
 public class FollowerRepositoryTest {
 	
 	@Test
-	public void testScrivoELeggoUtentiSeguiti() {
+	public void testCharlieFollowerDiAliceAndBob() {
 		FollowerRepository repo = new FollowerRepository();
 		UserModel charlie = new UserModel()
 				.setUsername("Charlie");

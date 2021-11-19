@@ -19,7 +19,7 @@ public class MessageQueryServiceTest {
 	private MessageRepository mr = mock(MessageRepository.class);
 	
 	@Test
-	public void readMessagesByUser() {
+	public void testReadMessagesByUser() {
 		MessageQueryService mqs = new MessageQueryService(mr);
 		
 		UserModel u = new UserModel().setUsername("Alice");

@@ -13,7 +13,6 @@ public class MessageServiceTest {
 	
 	private MessageRepository mr = mock(MessageRepository.class);
 	
-	
 	@Test
 	public void testPostWithMessageThenOK() {
 		MessageService ms = new MessageService(mr);
