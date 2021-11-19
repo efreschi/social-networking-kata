@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import betty.business.model.MessageModel;
 import betty.business.model.UserModel;
 import betty.business.repository.MessageRepository;
+import betty.business.support.MessageModelBuilder;
 
 public class MessageQueryServiceTest {
 	
@@ -23,21 +24,13 @@ public class MessageQueryServiceTest {
 		MessageQueryService mqs = new MessageQueryService(mr);
 		
 		UserModel u = new UserModel().setUsername("Alice");
-		MessageModel message1 = buildMessage(u.getUsername(), "Messaggio 1");
-		MessageModel message2 = buildMessage(u.getUsername(), "Messaggio 2");
+		MessageModel message1 = MessageModelBuilder.buildMessage(u.getUsername(), "Messaggio 1");
+		MessageModel message2 = MessageModelBuilder.buildMessage(u.getUsername(), "Messaggio 2");
 		List<MessageModel> messagesByUserExpected = Arrays.asList(message2, message1);
 		when(mr.findByUser(u)).thenReturn(messagesByUserExpected);
 		
 		List<MessageModel> messagesByUser = mqs.read(u);
 		
 		assertThat(messagesByUser).isEqualTo(messagesByUserExpected);
-	}
-	
-	private MessageModel buildMessage(String username, String message) {
-		UserModel u = new UserModel()
-				.setUsername(username);
-		return new MessageModel()
-				.setUser(u)
-				.setMessage(message);
 	}
 }

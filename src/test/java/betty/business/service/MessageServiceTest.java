@@ -6,8 +6,8 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.Test;
 
 import betty.business.model.MessageModel;
-import betty.business.model.UserModel;
 import betty.business.repository.MessageRepository;
+import betty.business.support.MessageModelBuilder;
 
 public class MessageServiceTest {
 	
@@ -17,13 +17,8 @@ public class MessageServiceTest {
 	@Test
 	public void testPostWithMessageThenOK() {
 		MessageService ms = new MessageService(mr);
-		MessageModel message = buildMessage("Alice", "Messaggio");
+		MessageModel message = MessageModelBuilder.buildMessage("Alice", "Messaggio");
 		ms.post(message);
 		verify(mr).save(message);
 	}
-	
-	private MessageModel buildMessage(String username, String message) {
-		UserModel u = new UserModel().setUsername(username);
-		return new MessageModel().setUser(u).setMessage(message);
 	}
-}
