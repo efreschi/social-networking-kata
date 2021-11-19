@@ -1,5 +1,6 @@
 package betty.business.repository;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -27,8 +28,12 @@ public class MessageRepository {
 	}
 	
 	public List<MessageModel> findByUser(UserModel user) {
+		return findByUsers(Arrays.asList(user));
+	}
+
+	public List<MessageModel> findByUsers(List<UserModel> users) {
 		return messaggi.stream()
-				.filter(m -> user.equals(m.getUser()))
+				.filter(m -> users.contains(m.getUser()))
 				.sorted(Comparator.comparing(MessageModel::getTime).reversed())
 				.collect(Collectors.toList());
 	}

@@ -18,7 +18,6 @@ public class MessageQueryServiceTest {
 	
 	private MessageRepository mr = mock(MessageRepository.class);
 	
-	
 	@Test
 	public void readMessagesByUser() {
 		MessageQueryService mqs = new MessageQueryService(mr);
