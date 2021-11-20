@@ -13,7 +13,7 @@ import betty.business.time.Clock;
 
 public class MessageRepository {
 	
-	private static final Set<MessageModel> messaggi = new HashSet<MessageModel>();
+	private Set<MessageModel> messaggi = new HashSet<MessageModel>();
 	
 	private Clock clock;
 

@@ -20,7 +20,7 @@ public class MessageQueryServiceTest {
 	
 	@Test
 	public void testReadMessagesByUser() {
-		MessageQueryService mqs = new MessageQueryService(mr);
+		MessageQueryService mqs = new MessageQueryService(mr, null);
 		
 		UserModel u = new UserModel().setUsername("Alice");
 		MessageModel message1 = MessageModelBuilder.buildMessage(u.getUsername(), "Messaggio 1");

@@ -9,7 +9,7 @@ import betty.business.model.UserModel;
 
 public class FollowerRepository {
 	
-	private static final Map<UserModel, List<UserModel>> followers = 
+	private Map<UserModel, List<UserModel>> followers = 
 			new HashMap<UserModel, List<UserModel>>();
 
 	public void addFollower(UserModel follower, UserModel user) {
