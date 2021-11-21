@@ -1,13 +1,10 @@
 package betty.event;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.StringTokenizer;
-import java.util.stream.Collectors;
 
 public class SocialNetworkKataInvoker {
 	
@@ -21,15 +18,18 @@ public class SocialNetworkKataInvoker {
 	private PostEvent pe;
 	private ReadEvent re;
 	private WallEvent we;
+	private FollowsEvent fe;
 	
-	public SocialNetworkKataInvoker(PostEvent pe, ReadEvent re, WallEvent we) {
+	public SocialNetworkKataInvoker(PostEvent pe, ReadEvent re, WallEvent we, FollowsEvent fe) {
 		super();
 		this.pe = pe;
 		this.re = re;
 		this.we = we;
+		this.fe = fe;
 		mappaIstruzioneEvento.put(POST_OP, this.pe);
 		mappaIstruzioneEvento.put(WALL_OP, this.we);
 		mappaIstruzioneEvento.put(READ_OP, this.re);
+		mappaIstruzioneEvento.put(FOLLOW_OP, this.fe);
 	}
 
 	public synchronized void registerIstruzione(String istruzione, SocialNetworkKataEvent evento) {
