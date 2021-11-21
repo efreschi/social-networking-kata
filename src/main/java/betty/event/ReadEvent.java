@@ -4,7 +4,7 @@ import betty.business.model.UserModel;
 import betty.business.service.MessageQueryService;
 import betty.print.PrintMessageConsole;
 
-public class ReadEvent {
+public class ReadEvent implements SocialNetworkKataEvent {
 
 	private MessageQueryService service;
 	private PrintMessageConsole printMessageConsole;
@@ -18,5 +18,11 @@ public class ReadEvent {
 
 	public void eseguiEvento(String username) {
 		printMessageConsole.print(service.read(new UserModel().setUsername(username)));
+	}
+
+
+	@Override
+	public void eseguiEvento(String username, String... args) {
+		eseguiEvento(username);
 	}
 }
