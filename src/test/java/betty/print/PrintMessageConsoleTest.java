@@ -9,7 +9,7 @@ import static org.mockito.Mockito.verify;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -20,8 +20,8 @@ public class PrintMessageConsoleTest {
 	
 	private Console c = mock(Console.class);
 	
-    @AfterEach
-    void tearDown() {
+    @BeforeEach
+    void clear() {
         reset(c);
     }
 	
