@@ -32,10 +32,6 @@ public class SocialNetworkKataInvoker {
 		mappaIstruzioneEvento.put(FOLLOW_OP, this.fe);
 	}
 
-	public synchronized void registerIstruzione(String istruzione, SocialNetworkKataEvent evento) {
-		mappaIstruzioneEvento.put(istruzione, evento);
-	}
-
 	public void invoke(String istruzione) {
 		List<String> istruzioni = istruzioni(istruzione);
 		SocialNetworkKataEvent event = retrieveEvent(istruzioni);
@@ -48,7 +44,7 @@ public class SocialNetworkKataInvoker {
 		event.eseguiEvento(username, args);
 	}
 	
-	public SocialNetworkKataEvent retrieveEvent(List<String> istruzioni) {
+	protected SocialNetworkKataEvent retrieveEvent(List<String> istruzioni) {
 		return mappaIstruzioneEvento.getOrDefault(
 				Optional.of(istruzioni)
 					.filter(i -> i.size() > 1)
@@ -56,7 +52,7 @@ public class SocialNetworkKataInvoker {
 					.orElseGet(() -> ""), re);
 	}
 	
-	public List<String> istruzioni(String istruzione) {
+	protected List<String> istruzioni(String istruzione) {
 		return Arrays.asList(istruzione.split(" ", 3));		
 	}
 }

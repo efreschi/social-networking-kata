@@ -13,7 +13,7 @@ public class PostEvent implements SocialNetworkKataEvent {
 	}
 
 
-	public void eseguiEvento(String username, String message) {
+	protected void eseguiEvento(String username, String message) {
 		service.post(MessageModelBuilder.buildMessage(username, message));
 	}
 

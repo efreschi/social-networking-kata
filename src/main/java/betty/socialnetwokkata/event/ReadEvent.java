@@ -16,7 +16,7 @@ public class ReadEvent implements SocialNetworkKataEvent {
 	}
 
 
-	public void eseguiEvento(String username) {
+	protected void eseguiEvento(String username) {
 		printMessageConsole.print(service.read(new UserModel().setUsername(username)));
 	}
 

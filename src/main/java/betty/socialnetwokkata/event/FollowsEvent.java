@@ -15,7 +15,7 @@ public class FollowsEvent implements SocialNetworkKataEvent {
 	}
 
 
-	public void eseguiEvento(String username, String userToFollow) {
+	protected void eseguiEvento(String username, String userToFollow) {
 		service.follow(UserModel.builder().username(username).build(), 
 				UserModel.builder().username(userToFollow).build());
 	}
