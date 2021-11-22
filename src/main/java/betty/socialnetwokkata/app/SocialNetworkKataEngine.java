@@ -15,10 +15,12 @@ public class SocialNetworkKataEngine {
 	}
 
 	public void run() {
+		console.println("L'applicazione risulta avviata correttamente. Adesso puoi scrivere sulla console. Quando vuoi terminare l'applicazione scrivi STOP (e invio)");
 		String  istruzione = console.readLine();
 		while (!"STOP".equals(istruzione)) {
 			invoker.invoke(istruzione);
 			istruzione = console.readLine();
 		}
+		console.println("Applicazione terminata come previsto");		
 	}
 }

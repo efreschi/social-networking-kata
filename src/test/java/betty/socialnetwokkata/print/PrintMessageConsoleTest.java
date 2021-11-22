@@ -4,7 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,20 +20,32 @@ public class PrintMessageConsoleTest {
 	
 	@Test
 	public void testPrintMessage() {
+		FormatDateTime formatter = mock(FormatDateTime.class);
 		Console c = mock(Console.class);
-		PrintMessageConsole p = new PrintMessageConsole(c);
+		PrintMessageConsole p = new PrintMessageConsole(c, formatter);
 		MessageModel message = MessageModelBuilder.buildMessage("Alice", "Messaggio");
+		LocalDateTime dt = LocalDateTime.of(2021, 11, 21, 23, 45, 11);
+		message.setTime(dt);
+		when(formatter.format(dt)).thenReturn("(2 minutes ago)");
+		
 		p.print(Arrays.asList(message));
 		
-		verify(c).println(message.getMessage());
+		verify(c).println(message.getMessage() + " (2 minutes ago)");
 	}
 
 	@Test
 	public void testPrintMessages() {
+		FormatDateTime formatter = mock(FormatDateTime.class);
 		Console c = mock(Console.class);
-		PrintMessageConsole p = new PrintMessageConsole(c);
+		PrintMessageConsole p = new PrintMessageConsole(c, formatter);
 		MessageModel message1 = MessageModelBuilder.buildMessage("Alice", "Messaggio 1");
+		LocalDateTime dt = LocalDateTime.of(2021, 11, 21, 23, 45, 11);
+		message1.setTime(dt);
+		when(formatter.format(dt)).thenReturn("(15 minutes ago)");
 		MessageModel message2 = MessageModelBuilder.buildMessage("Alice", "Messaggio 2");
+		dt = LocalDateTime.of(2021, 11, 21, 23, 58, 11);
+		message2.setTime(dt);
+		when(formatter.format(dt)).thenReturn("(2 minutes ago)");
 		p.print(Arrays.asList(message2, message1));
 		
 		ArgumentCaptor<String> argument = ArgumentCaptor.forClass(String.class);
@@ -39,6 +53,6 @@ public class PrintMessageConsoleTest {
 		
 		List<String> values = argument.getAllValues();
 		
-		assertThat(values).isEqualTo(Arrays.asList("Messaggio 2", "Messaggio 1"));
+		assertThat(values).isEqualTo(Arrays.asList("Messaggio 2 (2 minutes ago)", "Messaggio 1 (15 minutes ago)"));
 	}
 }

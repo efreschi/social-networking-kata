@@ -8,7 +8,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import betty.socialnetwokkata.business.model.UserModel;
-import betty.socialnetwokkata.business.repository.FollowerRepository;
 
 public class FollowerRepositoryTest {
 	
@@ -18,7 +17,7 @@ public class FollowerRepositoryTest {
 		UserModel charlie = new UserModel()
 				.setUsername("Charlie");
 		List<UserModel> seguiti = repo.findUsersByFollower(charlie);
-		assertThat(seguiti).isNullOrEmpty();
+		assertThat(seguiti).isEqualTo(Arrays.asList(charlie));
 		
 		UserModel alice = new UserModel()
 				.setUsername("Alice");	
@@ -26,7 +25,7 @@ public class FollowerRepositoryTest {
 		repo.addFollower(charlie, alice);
 		seguiti = repo.findUsersByFollower(charlie);
 		
-		assertThat(seguiti).isEqualTo(Arrays.asList(alice));
+		assertThat(seguiti).isEqualTo(Arrays.asList(alice, charlie));
 		
 		UserModel bob = new UserModel()
 				.setUsername("Bob");	
@@ -34,7 +33,7 @@ public class FollowerRepositoryTest {
 		repo.addFollower(charlie, bob);
 		seguiti = repo.findUsersByFollower(charlie);
 		
-		assertThat(seguiti).isEqualTo(Arrays.asList(alice, bob));
+		assertThat(seguiti).isEqualTo(Arrays.asList(alice, charlie, bob));
 	}
 
 }

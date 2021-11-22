@@ -33,7 +33,7 @@ public class SocialNetworkKataInvoker {
 	}
 
 	public void invoke(String istruzione) {
-		List<String> istruzioni = istruzioni(istruzione);
+		List<String> istruzioni = istruzioni(istruzione.trim());
 		SocialNetworkKataEvent event = retrieveEvent(istruzioni);
 		String username = istruzioni.get(0);
 		String[] args = Optional.of(istruzioni)

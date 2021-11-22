@@ -1,9 +1,11 @@
 package betty.socialnetwokkata.business.repository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import betty.socialnetwokkata.business.model.UserModel;
 
@@ -21,7 +23,12 @@ public class FollowerRepository {
 	}
 	
 	public List<UserModel> findUsersByFollower(UserModel follower) {
-		return followers.get(follower);
+		List<UserModel> users =
+				Optional.ofNullable(followers.get(follower)).orElseGet(() -> Arrays.asList(follower));
+		if (!users.contains(follower)) {
+			users.add(follower);
+		}
+		return users;
 	}
 
 	private List<UserModel> initializeFollowedForFollower(UserModel follower) {
