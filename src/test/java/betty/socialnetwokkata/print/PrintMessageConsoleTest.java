@@ -13,8 +13,6 @@ import org.mockito.ArgumentCaptor;
 
 import betty.socialnetwokkata.business.model.MessageModel;
 import betty.socialnetwokkata.business.support.MessageModelBuilder;
-import betty.socialnetwokkata.print.Console;
-import betty.socialnetwokkata.print.PrintMessageConsole;
 
 public class PrintMessageConsoleTest {
 	
