@@ -27,7 +27,7 @@ public class SocialNetworkKataApp {
 		engine.run();
 	}
 	
-	private SocialNetworkKataEngine inizializzaEngine() {
+	public SocialNetworkKataEngine inizializzaEngine() {
 		Console console = new Console(new Scanner(System.in));
 		Clock clock = new Clock();
 		FormatDateTime formatter = new FormatDateTime(clock);

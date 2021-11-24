@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: social-networking-kata
+  profiles:
+    #    active: dev @activeProfile@
+    default: "none"
+  datasource:
+    platform: h2
+    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+    initialization-mode: always
+    continue-on-error: false
+    
