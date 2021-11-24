@@ -10,6 +10,6 @@ Per compilare e creare il pacchetto eseguire
 > mvnw clean package
 
 Per eseguire il programma eseguire
-> java -cp target/social-networking-kata-0.0.1-SNAPSHOT.jar betty.socialnetwokkata.app.SocialNetworkKataApp
+> java -cp target/social-networking-kata-1.0.0-SNAPSHOT.jar betty.socialnetwokkata.app.SocialNetworkKataApp
 
 Per terminare l'applicazione si può scrivere STOP in console.
