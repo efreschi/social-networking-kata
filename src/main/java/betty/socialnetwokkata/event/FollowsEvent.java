@@ -1,12 +1,15 @@
 package betty.socialnetwokkata.event;
 
-import betty.socialnetwokkata.business.model.UserModel;
-import betty.socialnetwokkata.business.service.MessageService;
-import betty.socialnetwokkata.business.service.UserService;
-import betty.socialnetwokkata.business.support.MessageModelBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import betty.socialnetwokkata.business.model.UserModel;
+import betty.socialnetwokkata.business.service.UserService;
+
+@Component
 public class FollowsEvent implements SocialNetworkKataEvent {
 
+	@Autowired
 	private UserService service;
 	
 	public FollowsEvent(UserService service) {

@@ -7,8 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.springframework.stereotype.Component;
+
 import betty.socialnetwokkata.business.model.UserModel;
 
+@Component
 public class FollowerRepository {
 	
 	private Map<UserModel, List<UserModel>> followers = 

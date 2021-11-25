@@ -7,10 +7,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Component;
+
 import betty.socialnetwokkata.business.model.MessageModel;
 import betty.socialnetwokkata.business.model.UserModel;
 import betty.socialnetwokkata.business.time.Clock;
 
+@Component
 public class MessageRepository {
 	
 	private Set<MessageModel> messaggi = new HashSet<MessageModel>();

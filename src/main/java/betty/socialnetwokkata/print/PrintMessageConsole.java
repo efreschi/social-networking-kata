@@ -2,11 +2,17 @@ package betty.socialnetwokkata.print;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import betty.socialnetwokkata.business.model.MessageModel;
 
+@Component
 public class PrintMessageConsole {
 	
+	@Autowired
 	private Console console;
+	@Autowired
 	private FormatDateTime formatter;
 
 	public PrintMessageConsole(Console console, FormatDateTime formatter) {

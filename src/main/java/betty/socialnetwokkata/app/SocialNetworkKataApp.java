@@ -28,7 +28,8 @@ public class SocialNetworkKataApp {
 	}
 	
 	public SocialNetworkKataEngine inizializzaEngine() {
-		Console console = new Console(new Scanner(System.in));
+		Console console = new Console();
+		console.setScanner(new Scanner(System.in));
 		Clock clock = new Clock();
 		FormatDateTime formatter = new FormatDateTime(clock);
 		PrintMessageConsole pmc = new PrintMessageConsole(console, formatter);

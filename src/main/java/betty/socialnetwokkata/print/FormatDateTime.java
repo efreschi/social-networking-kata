@@ -4,10 +4,15 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import betty.socialnetwokkata.business.time.Clock;
 
+@Component
 public class FormatDateTime {
 	
+	@Autowired
 	private Clock clock;
 
 	public FormatDateTime(Clock clock) {
