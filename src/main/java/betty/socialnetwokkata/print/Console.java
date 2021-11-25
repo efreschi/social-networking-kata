@@ -1,5 +1,6 @@
 package betty.socialnetwokkata.print;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ public class Console {
 	}
 	
 	public String readLine() {
-		return scanner.nextLine();
+		return Optional.of(scanner.hasNextLine()).filter(Boolean.TRUE::equals).map(t -> scanner.nextLine())
+				.orElse(null);
 	}
 }

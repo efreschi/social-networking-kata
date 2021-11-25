@@ -36,6 +36,9 @@ public class SocialNetworkingKataProcessor implements ItemProcessor<String, Soci
 
 	@Override
 	public SocialNetworkingKataCommand process(String istruzione) throws Exception {
+		if (istruzione == null) {
+			return null;
+		}
 		List<String> istruzioni = istruzioni(istruzione.trim());
 		SocialNetworkingKataCommand command = retrieveCommand(istruzioni);
 		String username = istruzioni.get(0);

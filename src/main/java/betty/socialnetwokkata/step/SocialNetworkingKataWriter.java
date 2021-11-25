@@ -23,8 +23,10 @@ public class SocialNetworkingKataWriter implements ItemWriter<SocialNetworkingKa
 	
 	@Override
 	public void write(List<? extends SocialNetworkingKataCommand> items) throws Exception {
-		for (SocialNetworkingKataCommand command : items) {
-			invoke(command);
+		if (items != null && !items.isEmpty()) {
+			for (SocialNetworkingKataCommand command : items) {
+				invoke(command);
+			}
 		}
 		
 	}
