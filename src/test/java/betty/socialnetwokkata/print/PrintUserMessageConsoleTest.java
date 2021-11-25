@@ -13,6 +13,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
+import betty.socialnetwokkata.business.entity.Message;
 import betty.socialnetwokkata.business.model.MessageModel;
 import betty.socialnetwokkata.business.support.MessageModelBuilder;
 import betty.socialnetwokkata.print.Console;
@@ -26,14 +27,14 @@ public class PrintUserMessageConsoleTest {
 		FormatDateTime formatter = mock(FormatDateTime.class);
 		Console c = mock(Console.class);
 		PrintUserMessageConsole p = new PrintUserMessageConsole(c, formatter);
-		MessageModel message = MessageModelBuilder.buildMessage("Alice", "Messaggio");
+		Message message = Message.builder().username("Alice").message("Messaggio Alice").build();
 		LocalDateTime dt = LocalDateTime.of(2021, 11, 21, 23, 45, 11);
 		message.setTime(dt);
 		when(formatter.format(dt)).thenReturn("(2 minutes ago)");
 		
 		p.print(Arrays.asList(message));
 		
-		verify(c).println(message.getUser().getUsername() + " - " +  message.getMessage() + " (2 minutes ago)");
+		verify(c).println(message.getUsername() + " - " +  message.getMessage() + " (2 minutes ago)");
 	}
 
 	@Test
@@ -41,11 +42,11 @@ public class PrintUserMessageConsoleTest {
 		FormatDateTime formatter = mock(FormatDateTime.class);
 		Console c = mock(Console.class);
 		PrintUserMessageConsole p = new PrintUserMessageConsole(c, formatter);
-		MessageModel message1 = MessageModelBuilder.buildMessage("Alice", "Messaggio 1");
+		Message message1 = Message.builder().username("Alice").message("Messaggio 1").build();
 		LocalDateTime dt = LocalDateTime.of(2021, 11, 21, 23, 45, 11);
 		message1.setTime(dt);
 		when(formatter.format(dt)).thenReturn("(2 minutes ago)");
-		MessageModel message2 = MessageModelBuilder.buildMessage("Alice", "Messaggio 2");
+		Message message2 = Message.builder().username("Alice").message("Messaggio 2").build();
 		dt = LocalDateTime.of(2021, 11, 21, 23, 50, 11);
 		message2.setTime(dt);
 		when(formatter.format(dt)).thenReturn("(7 minutes ago)");
@@ -56,8 +57,8 @@ public class PrintUserMessageConsoleTest {
 		verify(c, times(2)).println(argument.capture());
 		
 		List<String> values = argument.getAllValues();
-		String s1 = message1.getUser().getUsername() + " - " +  message1.getMessage() + " (2 minutes ago)";
-		String s2 = message2.getUser().getUsername() + " - " +  message2.getMessage() + " (7 minutes ago)";
+		String s1 = message1.getUsername() + " - " +  message1.getMessage() + " (2 minutes ago)";
+		String s2 = message2.getUsername() + " - " +  message2.getMessage() + " (7 minutes ago)";
 		
 		assertThat(values).isEqualTo(Arrays.asList(s1, s2));
 	}

@@ -2,7 +2,7 @@ package betty.socialnetwokkata.print;
 
 import org.springframework.stereotype.Component;
 
-import betty.socialnetwokkata.business.model.MessageModel;
+import betty.socialnetwokkata.business.entity.Message;
 
 @Component
 public class PrintUserMessageConsole extends PrintMessageConsole {
@@ -11,9 +11,9 @@ public class PrintUserMessageConsole extends PrintMessageConsole {
 		super(console, formatter);
 	}
 	
-	protected String format(MessageModel message) {
+	protected String format(Message message) {
 		return String.format("%s - %s %s", 
-				message.getUser().getUsername(), 
+				message.getUsername(), 
 				message.getMessage(), 
 				getFormatter().format(message.getTime()));
 	}

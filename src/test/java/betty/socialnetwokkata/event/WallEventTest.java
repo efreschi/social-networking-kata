@@ -10,11 +10,10 @@ import java.util.Arrays;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-import betty.socialnetwokkata.business.model.MessageModel;
+import betty.socialnetwokkata.business.entity.Message;
 import betty.socialnetwokkata.business.model.UserModel;
 import betty.socialnetwokkata.business.service.MessageQueryService;
 import betty.socialnetwokkata.business.service.ReadService;
-import betty.socialnetwokkata.business.support.MessageModelBuilder;
 import betty.socialnetwokkata.print.PrintMessageConsole;
 
 public class WallEventTest {
@@ -31,16 +30,16 @@ public class WallEventTest {
 	public void testReadAlice() {
 		ReadService re = new ReadService(service, printMessageConsole);
 		UserModel alice = new UserModel().setUsername("Alice");
-		MessageModel mAlice = MessageModelBuilder.buildMessage(alice.getUsername(), "Messaggio Alice");  
+		Message message = Message.builder().username(alice.getUsername()).message("Messaggio Alice").build();
 		UserModel bob = new UserModel().setUsername("Bob");
-		MessageModel mBob = MessageModelBuilder.buildMessage(bob.getUsername(), "Messaggio Bob");  
+		Message mBob = Message.builder().username(bob.getUsername()).message("Messaggio Bob").build();
 		UserModel charlie = new UserModel().setUsername("Charlie");
-		MessageModel mCharlie = MessageModelBuilder.buildMessage(charlie.getUsername(), "Messaggio Charlie");  
-		when(service.read(alice)).thenReturn(Arrays.asList(mAlice, mBob, mCharlie));
+		Message mCharlie = Message.builder().username(charlie.getUsername()).message("Messaggio Charlie").build();
+		when(service.read(alice.getUsername())).thenReturn(Arrays.asList(message, mBob, mCharlie));
 		
 		re.eseguiEvento(alice.getUsername());
 		
-		verify(printMessageConsole).print(Arrays.asList(mAlice, mBob, mCharlie));
+		verify(printMessageConsole).print(Arrays.asList(message, mBob, mCharlie));
 	}
 
 }

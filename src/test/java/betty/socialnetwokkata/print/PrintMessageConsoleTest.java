@@ -13,6 +13,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
+import betty.socialnetwokkata.business.entity.Message;
 import betty.socialnetwokkata.business.model.MessageModel;
 import betty.socialnetwokkata.business.support.MessageModelBuilder;
 
@@ -23,7 +24,7 @@ public class PrintMessageConsoleTest {
 		FormatDateTime formatter = mock(FormatDateTime.class);
 		Console c = mock(Console.class);
 		PrintMessageConsole p = new PrintMessageConsole(c, formatter);
-		MessageModel message = MessageModelBuilder.buildMessage("Alice", "Messaggio");
+		Message message = Message.builder().username("Alice").message("Messaggio Alice").build();
 		LocalDateTime dt = LocalDateTime.of(2021, 11, 21, 23, 45, 11);
 		message.setTime(dt);
 		when(formatter.format(dt)).thenReturn("(2 minutes ago)");
@@ -38,11 +39,11 @@ public class PrintMessageConsoleTest {
 		FormatDateTime formatter = mock(FormatDateTime.class);
 		Console c = mock(Console.class);
 		PrintMessageConsole p = new PrintMessageConsole(c, formatter);
-		MessageModel message1 = MessageModelBuilder.buildMessage("Alice", "Messaggio 1");
+		Message message1 = Message.builder().username("Alice").message("Messaggio 1").build();
 		LocalDateTime dt = LocalDateTime.of(2021, 11, 21, 23, 45, 11);
 		message1.setTime(dt);
 		when(formatter.format(dt)).thenReturn("(15 minutes ago)");
-		MessageModel message2 = MessageModelBuilder.buildMessage("Alice", "Messaggio 2");
+		Message message2 = Message.builder().username("Alice").message("Messaggio 2").build();
 		dt = LocalDateTime.of(2021, 11, 21, 23, 58, 11);
 		message2.setTime(dt);
 		when(formatter.format(dt)).thenReturn("(2 minutes ago)");

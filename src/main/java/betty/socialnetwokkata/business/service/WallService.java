@@ -24,7 +24,7 @@ public class WallService implements SocialNetworkKataEvent, SocialNetworkingKata
 
 
 	protected void eseguiEvento(String username) {
-		printMessageConsole.print(service.wall(new UserModel().setUsername(username)));
+		printMessageConsole.print(service.wall(username));
 	}
 
 	@Override

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import betty.socialnetwokkata.business.model.MessageModel;
+import betty.socialnetwokkata.business.entity.Message;
 
 @Component
 public class PrintMessageConsole {
@@ -21,11 +21,11 @@ public class PrintMessageConsole {
 		this.formatter = formatter;
 	}
 
-	public void print(List<MessageModel> messages) {
+	public void print(List<Message> messages) {
 		messages.forEach(m -> console.println(format(m)));
 	}
 	
-	protected String format(MessageModel message) {
+	protected String format(Message message) {
 		return String.format("%s %s", 
 				message.getMessage(), 
 				formatter.format(message.getTime()));

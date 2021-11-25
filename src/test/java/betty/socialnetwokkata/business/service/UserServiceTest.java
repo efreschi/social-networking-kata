@@ -5,22 +5,22 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.Test;
 
+import betty.socialnetwokkata.business.entity.Follower;
 import betty.socialnetwokkata.business.model.UserModel;
-import betty.socialnetwokkata.business.repository.FollowerRepository;
-import betty.socialnetwokkata.business.service.UserService;
+import betty.socialnetwokkata.business.repository.FollowerJpaRepository;
 
 public class UserServiceTest {
 
-	private FollowerRepository repo = mock(FollowerRepository.class);
+	private FollowerJpaRepository repo = mock(FollowerJpaRepository.class);
 	
 	@Test
 	public void testCharlieFollowsAlice() {
 		UserService us = new UserService(repo);
 		UserModel charlie = new UserModel().setUsername("Charlie");
 		UserModel alice = new UserModel().setUsername("Alice");
-		us.follow(charlie, alice);
+		us.follow(charlie.getUsername(), alice.getUsername());
 		
-		verify(repo).addFollower(charlie, alice);
+		verify(repo).save(Follower.builder().username(alice.getUsername()).follower(charlie.getUsername()).build());
 	}
 
 }

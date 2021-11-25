@@ -20,7 +20,7 @@ public class FollowsEventTest {
 		
 		followEvent.eseguiEvento(alice.getUsername(), charlie.getUsername());
 		
-		verify(service).follow(alice, charlie);
+		verify(service).follow(alice.getUsername(), charlie.getUsername());
 	}
 
 }

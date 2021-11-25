@@ -22,7 +22,6 @@ import betty.socialnetwokkata.step.SocialNetworkingKataProcessor;
 import betty.socialnetwokkata.step.SocialNetworkingKataWriter;
 
 @Configuration
-@EnableAutoConfiguration(exclude = {HibernateJpaAutoConfiguration.class})
 @EnableBatchProcessing
 public class SocialNetworkingKataConfig {
 	

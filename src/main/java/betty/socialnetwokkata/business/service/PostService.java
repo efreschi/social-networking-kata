@@ -1,13 +1,16 @@
 package betty.socialnetwokkata.business.service;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import betty.socialnetwokkata.business.support.MessageModelBuilder;
+import betty.socialnetwokkata.business.entity.Message;
 import betty.socialnetwokkata.command.PostCommand;
 import betty.socialnetwokkata.event.SocialNetworkKataEvent;
 
 @Service("PostCommand")
+@Transactional
 public class PostService implements SocialNetworkKataEvent, SocialNetworkingKataService<PostCommand> {
 
 	@Autowired
@@ -20,7 +23,7 @@ public class PostService implements SocialNetworkKataEvent, SocialNetworkingKata
 
 
 	protected void eseguiEvento(String username, String message) {
-		service.post(MessageModelBuilder.buildMessage(username, message));
+		service.post(Message.builder().username(username).message(message).build());
 	}
 
 

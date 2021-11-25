@@ -1,34 +1,35 @@
 package betty.socialnetwokkata.business.service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import betty.socialnetwokkata.business.model.MessageModel;
-import betty.socialnetwokkata.business.model.UserModel;
-import betty.socialnetwokkata.business.repository.FollowerRepository;
-import betty.socialnetwokkata.business.repository.MessageRepository;
+import betty.socialnetwokkata.business.entity.Message;
+import betty.socialnetwokkata.business.repository.MessageJpaRepository;
 
 @Service
 public class MessageQueryService {
 	
 	@Autowired
-	private MessageRepository repository;
-	@Autowired
-	private FollowerRepository followerRepository;
+	private MessageJpaRepository repository;
 	
-	public MessageQueryService(MessageRepository repository, FollowerRepository followerRepository) {
+	public MessageQueryService(MessageJpaRepository repository) {
 		super();
 		this.repository = repository;
-		this.followerRepository  = followerRepository;
 	}
 
-	public List<MessageModel> read(UserModel user) {
-		return repository.findByUser(user);
+	public List<Message> read(String username) {
+		return repository.findByUsername(username).stream()
+				.sorted(Comparator.comparing(Message::getTime).reversed())
+				.collect(Collectors.toList());
 	}
 
-	public List<MessageModel> wall(UserModel user) {
-		return repository.findByUsers(followerRepository.findUsersByFollower(user));
+	public List<Message> wall(String username) { 
+		return repository.findByUsernameOrFollower(username).stream()
+				.sorted(Comparator.comparing(Message::getTime).reversed())
+				.collect(Collectors.toList());
 	}
 }

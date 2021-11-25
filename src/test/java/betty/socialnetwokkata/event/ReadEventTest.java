@@ -10,6 +10,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+import betty.socialnetwokkata.business.entity.Message;
 import betty.socialnetwokkata.business.model.MessageModel;
 import betty.socialnetwokkata.business.model.UserModel;
 import betty.socialnetwokkata.business.service.MessageQueryService;
@@ -30,13 +31,12 @@ public class ReadEventTest {
     @Test
 	public void testReadAlice() {
 		ReadService re = new ReadService(service, printMessageConsole);
-		UserModel alice = new UserModel().setUsername("Alice");
-		MessageModel mAlice = MessageModelBuilder.buildMessage(alice.getUsername(), "Messaggio Alice");  
-		when(service.read(alice)).thenReturn(Arrays.asList(mAlice));
+		Message message = Message.builder().username("Alice").message("Messaggio Alice").build();
+		when(service.read(message.getUsername())).thenReturn(Arrays.asList(message));
 		
-		re.eseguiEvento(alice.getUsername());
+		re.eseguiEvento(message.getUsername());
 		
-		verify(printMessageConsole).print(Arrays.asList(mAlice));
+		verify(printMessageConsole).print(Arrays.asList(message));
 	}
 
 }

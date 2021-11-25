@@ -3,7 +3,6 @@ package betty.socialnetwokkata.business.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import betty.socialnetwokkata.business.model.UserModel;
 import betty.socialnetwokkata.command.ReadCommand;
 import betty.socialnetwokkata.event.SocialNetworkKataEvent;
 import betty.socialnetwokkata.print.PrintMessageConsole;
@@ -24,7 +23,7 @@ public class ReadService implements SocialNetworkKataEvent, SocialNetworkingKata
 
 
 	protected void eseguiEvento(String username) {
-		printMessageConsole.print(service.read(new UserModel().setUsername(username)));
+		printMessageConsole.print(service.read(username));
 	}
 
 
