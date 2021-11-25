@@ -6,10 +6,10 @@ A console-based social networking application java based
 
 L'applicazione è scritta in java e richiede la jdk 11 installata (java nel path e JAVA_HOME configurata).
 
+Questa implementazione utilizza spring boot batch.
+
 Per compilare e creare il pacchetto eseguire
 > mvnw clean package
 
 Per eseguire il programma eseguire
-> java -cp target/social-networking-kata-1.0.0-SNAPSHOT.jar betty.socialnetwokkata.app.SocialNetworkKataApp
-
-Per terminare l'applicazione si può scrivere STOP in console.
+> java -jar target/social-networking-kata-2.0.0-SNAPSHOT.jar 
