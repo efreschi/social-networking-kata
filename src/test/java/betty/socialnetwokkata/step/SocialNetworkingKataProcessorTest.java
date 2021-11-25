@@ -13,7 +13,7 @@ import betty.socialnetwokkata.command.WallCommand;
 public class SocialNetworkingKataProcessorTest {
 
     @Test
-	public void testAliceReadIstruzione() throws Exception {
+	public void testAliceReadIstruzioneThenReadCommand() throws Exception {
 		String username = "Alice";
 		String istruzione = username;
 		ReadCommand command = ReadCommand.builder().username(username).build();
@@ -25,7 +25,7 @@ public class SocialNetworkingKataProcessorTest {
 	}
 
     @Test
-	public void testAlicePostMessageIstruzione() throws Exception {
+	public void testAlicePostMessageIstruzioneThenPostCommand() throws Exception {
 		String username = "Alice";
 		String message = "Messaggio Alice";
 		String istruzione = username + " -> " + message;
@@ -38,7 +38,7 @@ public class SocialNetworkingKataProcessorTest {
 	}
 
     @Test
-	public void testAliceWallIstruzione() throws Exception {
+	public void testAliceWallIstruzioneThenWallCommand() throws Exception {
 		String username = "Alice";
 		String istruzione = username + " wall";
 		WallCommand command = WallCommand.builder().username(username).build();
@@ -50,7 +50,7 @@ public class SocialNetworkingKataProcessorTest {
 	}
 
     @Test
-	public void testAliceFollowsCharlieIstruzione() throws Exception {
+	public void testAliceFollowsCharlieIstruzioneThenFollowsCommand() throws Exception {
 		String username = "Alice";
 		String followed = "Charlie";
 		String istruzione = username + " follows " + followed;

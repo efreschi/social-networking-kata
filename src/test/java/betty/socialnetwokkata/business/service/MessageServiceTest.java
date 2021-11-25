@@ -15,7 +15,7 @@ import betty.socialnetwokkata.business.time.Clock;
 public class MessageServiceTest {
 	
 	@Test
-	public void testPostWithMessageThenOK() {
+	public void testPostWithMessageThenMessageRepoSave() {
 		MessageJpaRepository mr = mock(MessageJpaRepository.class);
 		Clock clock = mock(Clock.class);
 		when(clock.nowDateTime()).thenReturn(LocalDateTime.of(2021, 11, 19, 23, 52, 1));

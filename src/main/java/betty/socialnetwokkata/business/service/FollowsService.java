@@ -6,11 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import betty.socialnetwokkata.command.FollowsCommand;
-import betty.socialnetwokkata.event.SocialNetworkKataEvent;
 
 @Service("FollowsCommand")
 @Transactional
-public class FollowsService implements SocialNetworkingKataService<FollowsCommand>, SocialNetworkKataEvent {
+public class FollowsService implements SocialNetworkingKataService<FollowsCommand> {
 
 	@Autowired
 	private UserService service;
@@ -29,11 +28,5 @@ public class FollowsService implements SocialNetworkingKataService<FollowsComman
 	@Override
 	public void execute(FollowsCommand command) {
 		eseguiEvento(command.getUsername(), command.getFollowed());
-	}
-
-
-	@Override
-	public void eseguiEvento(String username, String... args) {
-		eseguiEvento(username, args[0]);
 	}
 }

@@ -14,7 +14,7 @@ public class UserServiceTest {
 	private FollowerJpaRepository repo = mock(FollowerJpaRepository.class);
 	
 	@Test
-	public void testCharlieFollowsAlice() {
+	public void testCharlieFollowsAliceThenRepoSave() {
 		UserService us = new UserService(repo);
 		UserModel charlie = new UserModel().setUsername("Charlie");
 		UserModel alice = new UserModel().setUsername("Alice");

@@ -10,7 +10,6 @@ import lombok.experimental.Accessors;
 @Data
 @Builder
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
-@Accessors(chain = true)
 @NoArgsConstructor()
 public class WallCommand implements SocialNetworkingKataCommand {
 

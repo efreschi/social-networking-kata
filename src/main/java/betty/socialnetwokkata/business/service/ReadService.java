@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import betty.socialnetwokkata.command.ReadCommand;
-import betty.socialnetwokkata.event.SocialNetworkKataEvent;
 import betty.socialnetwokkata.print.PrintMessageConsole;
 
 @Service("ReadCommand")
-public class ReadService implements SocialNetworkKataEvent, SocialNetworkingKataService<ReadCommand> {
+public class ReadService implements SocialNetworkingKataService<ReadCommand> {
 
 	@Autowired
 	private MessageQueryService service;
@@ -25,13 +24,6 @@ public class ReadService implements SocialNetworkKataEvent, SocialNetworkingKata
 	protected void eseguiEvento(String username) {
 		printMessageConsole.print(service.read(username));
 	}
-
-
-	@Override
-	public void eseguiEvento(String username, String... args) {
-		eseguiEvento(username);
-	}
-
 
 	@Override
 	public void execute(ReadCommand command) {

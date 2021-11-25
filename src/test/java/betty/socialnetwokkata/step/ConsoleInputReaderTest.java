@@ -11,7 +11,7 @@ import betty.socialnetwokkata.print.Console;
 public class ConsoleInputReaderTest {
 
 	@Test
-	public void testRead() throws Exception {
+	public void testReadingFromConsole() throws Exception {
 		Console console = mock(Console.class);
 		String i1 = "Alice -> I love the weather today";
 		String i2 = "Alice";
