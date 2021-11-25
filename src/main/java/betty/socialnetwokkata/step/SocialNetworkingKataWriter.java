@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.batch.item.ItemWriter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import betty.socialnetwokkata.event.FollowsEvent;
@@ -25,9 +26,14 @@ public class SocialNetworkingKataWriter implements ItemWriter<String> {
 	
 	
 	private Map<String, SocialNetworkKataEvent> mappaIstruzioneEvento = new HashMap<String, SocialNetworkKataEvent>();
+
+	@Autowired
 	private PostEvent pe;
+	@Autowired
 	private ReadEvent re;
+	@Autowired
 	private WallEvent we;
+	@Autowired
 	private FollowsEvent fe;
 	
 	public SocialNetworkingKataWriter(PostEvent pe, ReadEvent re, WallEvent we, FollowsEvent fe) {
