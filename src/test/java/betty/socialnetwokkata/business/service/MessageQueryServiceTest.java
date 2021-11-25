@@ -11,8 +11,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import betty.socialnetwokkata.business.entity.Message;
-import betty.socialnetwokkata.business.model.UserModel;
 import betty.socialnetwokkata.business.repository.MessageJpaRepository;
+import betty.socialnetwokkata.business.support.UserModel;
 
 public class MessageQueryServiceTest {
 	

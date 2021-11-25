@@ -6,8 +6,8 @@ import static org.mockito.Mockito.verify;
 import org.junit.jupiter.api.Test;
 
 import betty.socialnetwokkata.business.entity.Follower;
-import betty.socialnetwokkata.business.model.UserModel;
 import betty.socialnetwokkata.business.repository.FollowerJpaRepository;
+import betty.socialnetwokkata.business.support.UserModel;
 
 public class UserServiceTest {
 

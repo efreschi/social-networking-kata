@@ -8,9 +8,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import betty.socialnetwokkata.business.entity.Message;
-import betty.socialnetwokkata.business.model.UserModel;
 import betty.socialnetwokkata.business.service.MessageService;
 import betty.socialnetwokkata.business.service.PostService;
+import betty.socialnetwokkata.business.support.UserModel;
 
 public class PostEventTest {
 	

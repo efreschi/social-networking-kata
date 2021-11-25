@@ -3,7 +3,6 @@ package betty.socialnetwokkata.business.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import betty.socialnetwokkata.business.model.UserModel;
 import betty.socialnetwokkata.command.WallCommand;
 import betty.socialnetwokkata.event.SocialNetworkKataEvent;
 import betty.socialnetwokkata.print.PrintUserMessageConsole;

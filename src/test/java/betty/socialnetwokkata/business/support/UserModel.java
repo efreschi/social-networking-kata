@@ -1,4 +1,4 @@
-package betty.socialnetwokkata.business.model;
+package betty.socialnetwokkata.business.support;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

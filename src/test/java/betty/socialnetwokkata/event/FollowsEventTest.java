@@ -5,9 +5,9 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.Test;
 
-import betty.socialnetwokkata.business.model.UserModel;
 import betty.socialnetwokkata.business.service.FollowsService;
 import betty.socialnetwokkata.business.service.UserService;
+import betty.socialnetwokkata.business.support.UserModel;
 
 public class FollowsEventTest {
 	
