@@ -10,6 +10,8 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ServiceLocatorFactoryBean;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,23 +22,12 @@ import betty.socialnetwokkata.step.SocialNetworkingKataProcessor;
 import betty.socialnetwokkata.step.SocialNetworkingKataWriter;
 
 @Configuration
+@EnableAutoConfiguration(exclude = {HibernateJpaAutoConfiguration.class})
 @EnableBatchProcessing
 public class SocialNetworkingKataConfig {
 	
 	private Scanner scanner;
 	
-//	@Autowired
-//	private PostService postEvent;
-//
-//	@Autowired
-//	private ReadService readEvent;
-//
-//	@Autowired
-//	private FollowsService followsEvent;
-//
-//	@Autowired
-//	private WallService wallEvent;
-//
 	@Autowired
 	private JobBuilderFactory jobBuilderFactory;
 
