@@ -8,11 +8,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import betty.socialnetwokkata.business.entity.Message;
-import betty.socialnetwokkata.business.model.MessageModel;
 import betty.socialnetwokkata.business.model.UserModel;
 import betty.socialnetwokkata.business.service.MessageService;
 import betty.socialnetwokkata.business.service.PostService;
-import betty.socialnetwokkata.business.support.MessageModelBuilder;
 
 public class PostEventTest {
 	
@@ -27,11 +25,11 @@ public class PostEventTest {
 	public void testPostAlice() {
 		PostService pe = new PostService(service);
 		UserModel alice = new UserModel().setUsername("Alice");
-		MessageModel mAlice = MessageModelBuilder.buildMessage(alice.getUsername(), "Messaggio Alice");  
+		Message mAlice = Message.builder().username(alice.getUsername()).message("Messaggio Alice").build();  
 		
 		pe.eseguiEvento(alice.getUsername(), mAlice.getMessage());
 		
-		verify(service).post(Message.builder().username(mAlice.getUser().getUsername()).message(mAlice.getMessage()).build());
+		verify(service).post(Message.builder().username(mAlice.getUsername()).message(mAlice.getMessage()).build());
 	}
 
 }

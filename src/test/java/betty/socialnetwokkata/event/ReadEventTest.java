@@ -11,11 +11,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import betty.socialnetwokkata.business.entity.Message;
-import betty.socialnetwokkata.business.model.MessageModel;
-import betty.socialnetwokkata.business.model.UserModel;
 import betty.socialnetwokkata.business.service.MessageQueryService;
 import betty.socialnetwokkata.business.service.ReadService;
-import betty.socialnetwokkata.business.support.MessageModelBuilder;
 import betty.socialnetwokkata.print.PrintMessageConsole;
 
 public class ReadEventTest {

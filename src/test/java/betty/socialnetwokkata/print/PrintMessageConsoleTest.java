@@ -14,8 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
 import betty.socialnetwokkata.business.entity.Message;
-import betty.socialnetwokkata.business.model.MessageModel;
-import betty.socialnetwokkata.business.support.MessageModelBuilder;
 
 public class PrintMessageConsoleTest {
 	
