@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 import betty.socialnetwokkata.business.model.MessageModel;
 import betty.socialnetwokkata.business.model.UserModel;
 import betty.socialnetwokkata.business.service.MessageQueryService;
+import betty.socialnetwokkata.business.service.ReadService;
 import betty.socialnetwokkata.business.support.MessageModelBuilder;
-import betty.socialnetwokkata.event.ReadEvent;
 import betty.socialnetwokkata.print.PrintMessageConsole;
 
 public class ReadEventTest {
@@ -29,7 +29,7 @@ public class ReadEventTest {
 
     @Test
 	public void testReadAlice() {
-		ReadEvent re = new ReadEvent(service, printMessageConsole);
+		ReadService re = new ReadService(service, printMessageConsole);
 		UserModel alice = new UserModel().setUsername("Alice");
 		MessageModel mAlice = MessageModelBuilder.buildMessage(alice.getUsername(), "Messaggio Alice");  
 		when(service.read(alice)).thenReturn(Arrays.asList(mAlice));

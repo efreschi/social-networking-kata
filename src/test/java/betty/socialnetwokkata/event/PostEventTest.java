@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 import betty.socialnetwokkata.business.model.MessageModel;
 import betty.socialnetwokkata.business.model.UserModel;
 import betty.socialnetwokkata.business.service.MessageService;
+import betty.socialnetwokkata.business.service.PostService;
 import betty.socialnetwokkata.business.support.MessageModelBuilder;
-import betty.socialnetwokkata.event.PostEvent;
 
 public class PostEventTest {
 	
@@ -27,7 +27,7 @@ public class PostEventTest {
 
     @Test
 	public void testPostAlice() {
-		PostEvent pe = new PostEvent(service);
+		PostService pe = new PostService(service);
 		UserModel alice = new UserModel().setUsername("Alice");
 		MessageModel mAlice = MessageModelBuilder.buildMessage(alice.getUsername(), "Messaggio Alice");  
 		

@@ -5,20 +5,20 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.Test;
 
-import betty.socialnetwokkata.event.FollowsEvent;
-import betty.socialnetwokkata.event.PostEvent;
-import betty.socialnetwokkata.event.ReadEvent;
+import betty.socialnetwokkata.business.service.FollowsService;
+import betty.socialnetwokkata.business.service.PostService;
+import betty.socialnetwokkata.business.service.ReadService;
+import betty.socialnetwokkata.business.service.WallService;
 import betty.socialnetwokkata.event.SocialNetworkKataInvoker;
-import betty.socialnetwokkata.event.WallEvent;
 
 public class SocialNetworkKataInvokerTest {
 
     @Test
 	public void testAliceReadIstruzione() {
-    	PostEvent pe = mock(PostEvent.class);
-    	ReadEvent re = mock(ReadEvent.class);
-    	WallEvent we = mock(WallEvent.class);
-    	FollowsEvent fe = mock(FollowsEvent.class);
+    	PostService pe = mock(PostService.class);
+    	ReadService re = mock(ReadService.class);
+    	WallService we = mock(WallService.class);
+    	FollowsService fe = mock(FollowsService.class);
     	
 		String username = "Alice";
 		String istruzione = username;
@@ -31,10 +31,10 @@ public class SocialNetworkKataInvokerTest {
 
     @Test
 	public void testAlicePostMessageIstruzione() {
-    	PostEvent pe = mock(PostEvent.class);
-    	ReadEvent re = mock(ReadEvent.class);
-    	WallEvent we = mock(WallEvent.class);
-    	FollowsEvent fe = mock(FollowsEvent.class);
+    	PostService pe = mock(PostService.class);
+    	ReadService re = mock(ReadService.class);
+    	WallService we = mock(WallService.class);
+    	FollowsService fe = mock(FollowsService.class);
     	
 		String username = "Alice";
 		String istruzione = username + " -> Messaggio Alice";
@@ -47,10 +47,10 @@ public class SocialNetworkKataInvokerTest {
 
     @Test
 	public void testAliceWallIstruzione() {
-    	PostEvent pe = mock(PostEvent.class);
-    	ReadEvent re = mock(ReadEvent.class);
-    	WallEvent we = mock(WallEvent.class);
-    	FollowsEvent fe = mock(FollowsEvent.class);
+    	PostService pe = mock(PostService.class);
+    	ReadService re = mock(ReadService.class);
+    	WallService we = mock(WallService.class);
+    	FollowsService fe = mock(FollowsService.class);
     	
 		String username = "Alice";
 		String istruzione = username + " wall";
@@ -63,10 +63,10 @@ public class SocialNetworkKataInvokerTest {
 
     @Test
 	public void testAliceFollowsCharlieIstruzione() {
-    	PostEvent pe = mock(PostEvent.class);
-    	ReadEvent re = mock(ReadEvent.class);
-    	WallEvent we = mock(WallEvent.class);
-    	FollowsEvent fe = mock(FollowsEvent.class);
+    	PostService pe = mock(PostService.class);
+    	ReadService re = mock(ReadService.class);
+    	WallService we = mock(WallService.class);
+    	FollowsService fe = mock(FollowsService.class);
     	
 		String username = "Alice";
 		String istruzione = username + " follows Charlie";

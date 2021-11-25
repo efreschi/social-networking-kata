@@ -9,13 +9,12 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ServiceLocatorFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import betty.socialnetwokkata.event.FollowsEvent;
-import betty.socialnetwokkata.event.PostEvent;
-import betty.socialnetwokkata.event.ReadEvent;
-import betty.socialnetwokkata.event.WallEvent;
+import betty.socialnetwokkata.business.service.SocialNetworkingKataServiceFactory;
+import betty.socialnetwokkata.command.SocialNetworkingKataCommand;
 import betty.socialnetwokkata.step.ConsoleInputReader;
 import betty.socialnetwokkata.step.SocialNetworkingKataProcessor;
 import betty.socialnetwokkata.step.SocialNetworkingKataWriter;
@@ -26,18 +25,18 @@ public class SocialNetworkingKataConfig {
 	
 	private Scanner scanner;
 	
-	@Autowired
-	private PostEvent postEvent;
-
-	@Autowired
-	private ReadEvent readEvent;
-
-	@Autowired
-	private FollowsEvent followsEvent;
-
-	@Autowired
-	private WallEvent wallEvent;
-
+//	@Autowired
+//	private PostService postEvent;
+//
+//	@Autowired
+//	private ReadService readEvent;
+//
+//	@Autowired
+//	private FollowsService followsEvent;
+//
+//	@Autowired
+//	private WallService wallEvent;
+//
 	@Autowired
 	private JobBuilderFactory jobBuilderFactory;
 
@@ -47,13 +46,19 @@ public class SocialNetworkingKataConfig {
 	@Autowired
 	private ConsoleInputReader consoleInputReader;	
 
-	@Autowired
-	private SocialNetworkingKataWriter snkWriter;
 	public SocialNetworkingKataConfig() {
 		super();
 		this.scanner = new Scanner(System.in);
 	}
 	
+
+	@Bean("socialNetworkingKataServiceFactory")
+    public ServiceLocatorFactoryBean socialNetworkingKataServiceFactory() {
+	    ServiceLocatorFactoryBean locator = new ServiceLocatorFactoryBean();
+	    locator.setServiceLocatorInterface(SocialNetworkingKataServiceFactory.class);
+        return locator;
+    }
+
 	@Bean
 	public Scanner getScanner() {
 		return scanner;
@@ -65,21 +70,22 @@ public class SocialNetworkingKataConfig {
 	}
 
 	@Bean
-	public Job createJob() {
+	public Job createJob( Step step1) {
 		return jobBuilderFactory.get("MyJob")
 				.incrementer(new RunIdIncrementer())
-				.flow(createStep())
+				.flow(step1)
 				.end()
 				.build();
 	}
 
 	@Bean
-	public Step createStep() {
+	public Step createStep(SocialNetworkingKataWriter snkWriter) {
 		return stepBuilderFactory.get("MyStep")
-				.<String, String> chunk(1)
+				.<String, SocialNetworkingKataCommand> chunk(1)
 				.reader(consoleInputReader)
 				.processor(processor())
 				.writer(snkWriter)
 				.build();
 	}
+	
 }

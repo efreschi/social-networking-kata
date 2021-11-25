@@ -1,21 +1,22 @@
-package betty.socialnetwokkata.event;
+package betty.socialnetwokkata.business.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import betty.socialnetwokkata.business.model.UserModel;
-import betty.socialnetwokkata.business.service.MessageQueryService;
+import betty.socialnetwokkata.command.ReadCommand;
+import betty.socialnetwokkata.event.SocialNetworkKataEvent;
 import betty.socialnetwokkata.print.PrintMessageConsole;
 
-@Component
-public class ReadEvent implements SocialNetworkKataEvent {
+@Service("ReadCommand")
+public class ReadService implements SocialNetworkKataEvent, SocialNetworkingKataService<ReadCommand> {
 
 	@Autowired
 	private MessageQueryService service;
 	@Autowired
 	private PrintMessageConsole printMessageConsole;
 	
-	public ReadEvent(MessageQueryService service, PrintMessageConsole printMessageConsole) {
+	public ReadService(MessageQueryService service, PrintMessageConsole printMessageConsole) {
 		super();
 		this.service = service;
 		this.printMessageConsole = printMessageConsole;
@@ -30,5 +31,11 @@ public class ReadEvent implements SocialNetworkKataEvent {
 	@Override
 	public void eseguiEvento(String username, String... args) {
 		eseguiEvento(username);
+	}
+
+
+	@Override
+	public void execute(ReadCommand command) {
+		eseguiEvento(command.getUsername());
 	}
 }

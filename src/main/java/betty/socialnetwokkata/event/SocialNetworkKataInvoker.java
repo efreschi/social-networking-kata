@@ -6,6 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import betty.socialnetwokkata.business.service.FollowsService;
+import betty.socialnetwokkata.business.service.PostService;
+import betty.socialnetwokkata.business.service.ReadService;
+import betty.socialnetwokkata.business.service.WallService;
+
 public class SocialNetworkKataInvoker {
 	
 	private static final String POST_OP = "->";
@@ -15,12 +20,12 @@ public class SocialNetworkKataInvoker {
 	
 	
 	private Map<String, SocialNetworkKataEvent> mappaIstruzioneEvento = new HashMap<String, SocialNetworkKataEvent>();
-	private PostEvent pe;
-	private ReadEvent re;
-	private WallEvent we;
-	private FollowsEvent fe;
+	private PostService pe;
+	private ReadService re;
+	private WallService we;
+	private FollowsService fe;
 	
-	public SocialNetworkKataInvoker(PostEvent pe, ReadEvent re, WallEvent we, FollowsEvent fe) {
+	public SocialNetworkKataInvoker(PostService pe, ReadService re, WallService we, FollowsService fe) {
 		super();
 		this.pe = pe;
 		this.re = re;

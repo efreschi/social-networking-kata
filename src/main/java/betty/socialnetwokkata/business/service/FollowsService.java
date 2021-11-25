@@ -1,18 +1,19 @@
-package betty.socialnetwokkata.event;
+package betty.socialnetwokkata.business.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import betty.socialnetwokkata.business.model.UserModel;
-import betty.socialnetwokkata.business.service.UserService;
+import betty.socialnetwokkata.command.FollowsCommand;
+import betty.socialnetwokkata.event.SocialNetworkKataEvent;
 
-@Component
-public class FollowsEvent implements SocialNetworkKataEvent {
+@Service("FollowsCommand")
+public class FollowsService implements SocialNetworkingKataService<FollowsCommand>, SocialNetworkKataEvent {
 
 	@Autowired
 	private UserService service;
 	
-	public FollowsEvent(UserService service) {
+	public FollowsService(UserService service) {
 		super();
 		this.service = service;
 	}
@@ -21,6 +22,11 @@ public class FollowsEvent implements SocialNetworkKataEvent {
 	protected void eseguiEvento(String username, String userToFollow) {
 		service.follow(UserModel.builder().username(username).build(), 
 				UserModel.builder().username(userToFollow).build());
+	}
+
+	@Override
+	public void execute(FollowsCommand command) {
+		eseguiEvento(command.getUsername(), command.getFollowed());
 	}
 
 
